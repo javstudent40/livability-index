@@ -21,6 +21,6 @@ for place in locations[:5]:
 
 df = pd.DataFrame(data, columns=["City", "State", "Population", "Livability Index"])
 
-print(df)
+df.to_csv('livescrape.csv', index=False)
 
 
