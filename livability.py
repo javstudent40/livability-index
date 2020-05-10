@@ -4,7 +4,10 @@ import pandas as pd
 
 data = []
 
-url = "https://www.areavibes.com/best-places/kentucky/"
+answer = input("Please enter the state for which you would like information: ")
+answer = answer.lower()
+
+url = "https://www.areavibes.com/best-places/{}/".format(answer)
 
 response = requests.get(url)
 
@@ -12,7 +15,7 @@ pattern = re.compile(r'data-match=\"\">(\d{2})<\/i><ul><li><strong>([\w\s]*)\, (
 
 locations = re.findall(pattern, response.text)
 
-for place in locations[:5]:
+for place in locations:
     rating = place[0]
     city = place[1]
     state = place[2]
