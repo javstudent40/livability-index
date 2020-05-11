@@ -11,6 +11,13 @@ url = "https://www.areavibes.com/best-places/{}/".format(answer)
 
 response = requests.get(url)
 
+# tests for invalid response from user
+while response.status_code == 404:
+    nextanswer = input("Please enter a valid state: ")
+    nextanswer = nextanswer.lower()
+    url = "https://www.areavibes.com/best-places/{}/".format(nextanswer)
+    response = requests.get(url)
+
 pattern = re.compile(r'data-match=\"\">(\d{2})<\/i><ul><li><strong>([\w\s]*)\, (\D{2})[\w\s</>()]*: (\d{1,3}\,?\d{3}?)')
 
 locations = re.findall(pattern, response.text)
